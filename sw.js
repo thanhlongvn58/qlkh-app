@@ -1,4 +1,4 @@
-const C='qlkh-v31-4e60f5d06e';const F=['/','/manifest.webmanifest','/icon-192.png','/icon-512.png','/icon-180.png'];
+const C='qlkh-v32-6480382e58';const F=['/','/manifest.webmanifest','/icon-192.png','/icon-512.png','/icon-180.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(F)).catch(()=>{}).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',e=>{const r=e.request;const u=new URL(r.url);if(r.method!=='GET'||u.origin!==location.origin||u.pathname.startsWith('/api/')||u.pathname.startsWith('/cdn-cgi/'))return;
