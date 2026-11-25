@@ -5,16 +5,18 @@
 const J = (o, s = 200) => new Response(JSON.stringify(o), { status: s, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' } });
 const b64u = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
 let JWKS = null, JWKS_AT = 0;
+// TEAM_DOMAIN chấp nhận: 'ten-nhom', 'ten-nhom.cloudflareaccess.com' hoặc URL đầy đủ.
+const teamBase = env => { let t = String(env.TEAM_DOMAIN).trim().replace(/\/$/, ''); if (/^https?:\/\//.test(t)) return t; if (!t.includes('.')) t += '.cloudflareaccess.com'; return 'https://' + t; };
 async function keys(env) {
   if (JWKS && Date.now() - JWKS_AT < 3600e3) return JWKS;
-  const base = env.TEAM_DOMAIN.startsWith('http') ? env.TEAM_DOMAIN : 'https://' + env.TEAM_DOMAIN;
+  const base = teamBase(env);
   const r = await fetch(base.replace(/\/$/, '') + '/cdn-cgi/access/certs');
   if (!r.ok) throw new Error('certs ' + r.status);
   JWKS = (await r.json()).keys || []; JWKS_AT = Date.now(); return JWKS;
 }
 async function auth(req, env) {
   if (!env.DB) return 'Chưa gắn kho dữ liệu D1 (biến DB).';
-  if (!env.TEAM_DOMAIN || !env.POLICY_AUD || !env.ALLOWED_EMAIL) return 'Chưa cấu hình bảo mật (TEAM_DOMAIN, POLICY_AUD, ALLOWED_EMAIL).';
+  if (!env.TEAM_DOMAIN || !env.ALLOWED_EMAIL) return 'Chưa cấu hình bảo mật (TEAM_DOMAIN, ALLOWED_EMAIL).';
   const tok = req.headers.get('cf-access-jwt-assertion');
   if (!tok) return 'Chưa đăng nhập.';
   const [h, p, s] = tok.split('.');
@@ -30,8 +32,8 @@ async function auth(req, env) {
   if (!ok) return 'Vé đăng nhập không hợp lệ.';
   const now = Math.floor(Date.now() / 1000);
   if (!P.exp || P.exp < now - 30 || (P.nbf && P.nbf > now + 30)) return 'Phiên đăng nhập đã hết hạn.';
-  const aud = Array.isArray(P.aud) ? P.aud : [P.aud];
-  if (!aud.includes(env.POLICY_AUD)) return 'Vé đăng nhập không dành cho trang này.';
+  if (env.POLICY_AUD) { const aud = Array.isArray(P.aud) ? P.aud : [P.aud]; if (!aud.includes(env.POLICY_AUD.trim())) return 'Vé đăng nhập không dành cho trang này.'; }
+  if (P.iss && String(P.iss).replace(/\/$/, '') !== teamBase(env).replace(/\/$/, '')) return 'Vé đăng nhập không do nhóm của anh cấp.';
   const allowed = env.ALLOWED_EMAIL.toLowerCase().split(',').map(x => x.trim()).filter(Boolean);
   if (!allowed.includes(String(P.email || '').toLowerCase())) return 'Email này không được phép.';
   return null;
