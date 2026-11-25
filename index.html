@@ -581,7 +581,7 @@ const S={db:null,dl:null,meta:null,dek:null,dekRaw:null,
   f:{q:'',seller:'',cn:'',nguon:'',tt:'',nhan:'',arch:false,nav:'all',nsgSub:''},page:0,sel:new Set(),
   lf:{q:'',kq:'',kenh:'',arch:false},lpage:0,nf:{q:'',own:'LONG'},imp:null,revealed:new Set(),lastActive:Date.now(),warn:[]};
 
-const APP_VER='v28';
+const APP_VER='v29';
 /* ============ platform ============ */
 async function cap(name){for(let i=0;i<100&&!(window.claude&&window.claude.use);i++)await sleep(100);if(!(window.claude&&window.claude.use))return null;try{return await window.claude.use(name)}catch(e){return null}}
 let wq=Promise.resolve(),pending=0,saveErr=null;
@@ -1495,7 +1495,7 @@ const HELP=[
   <li><b>Nhật ký hoạt động</b>: nhóm theo ngày, lọc nhanh theo loại (Truy cập, Nhập dữ liệu, Xuất / tải file, Xóa / dọn, Xem nhạy cảm…).</li>
   <li><b>Xóa hoạt động…</b> (1 giờ đến 1 tháng, cần mật khẩu): chỉ xóa ghi chép, không ảnh hưởng dữ liệu KH.</li></ul>`},
  {id:'cai-dat',t:'Cài đặt: sao lưu, dung lượng, bản offline',lv:'cb',v:'settings',b:`<ul>
-  <li><b>Tải bản sao lưu</b> mỗi tuần hoặc tháng, cất ngoài máy. Mở bằng mật khẩu hoặc Mã khôi phục <b>tại thời điểm sao lưu</b>.</li>
+  <li><b>Tải bản sao lưu</b> mỗi tuần (và sau mỗi lần nhập R44 / RP0003 nếu muốn điện thoại có số mới), cất ngoài máy. File luôn là dữ liệu <b>mới nhất lúc bấm</b>: khách hàng, tiềm năng, mã NGT, doanh số, giao dịch chờ khớp, thùng rác, nhật ký, cài đặt. Mở bằng mật khẩu hoặc Mã khôi phục <b>tại thời điểm sao lưu</b>.</li>
   <li><b>Khôi phục từ bản sao lưu…</b> thay toàn bộ dữ liệu hiện tại bằng dữ liệu trong file.</li>
   <li><b>Đổi mật khẩu</b>, <b>Tạo lại Mã khôi phục</b> (mã cũ hết hiệu lực).</li>
   <li><b>Kiểm tra dung lượng</b> và <b>Dọn dữ liệu phụ…</b>: chỉ dọn bản hoàn tác, nhật ký, lịch sử cũ; luôn sao lưu trước.</li>
@@ -1504,7 +1504,19 @@ const HELP=[
   <li>Mở file offline đã tải bằng Chrome hoặc Edge trên máy tính.</li>
   <li>Chọn <b>Khôi phục từ bản sao lưu</b> › chọn file sao lưu mới nhất › nhập mật khẩu.</li>
   <li>Làm việc bình thường. Khi Claude hoạt động lại: ở bản offline bấm <b>Tải bản sao lưu</b>, rồi ở bản online chọn <b>Khôi phục từ bản sao lưu…</b></li></ol>
-  <p class="muted">Bản offline không tự đồng bộ. Chỉ sửa ở một nơi trong thời gian gián đoạn.</p>`},
+  <p class="muted">Bản offline không tự đồng bộ. Chỉ sửa ở một nơi trong thời gian gián đoạn. Trên điện thoại, máy tính bảng: dùng app ở mục bên dưới.</p>`},
+ {id:'dien-thoai',t:'App trên điện thoại, iPad (dùng cả khi mất mạng)',lv:'cb',v:'settings',b:`<p><b>Link app:</b> <span class="mono">https://thanhlongvn58.github.io/qlkh-app/</span>. Giao diện giống bản trên Claude. Dữ liệu chỉ nằm trong máy, mã hóa bằng mật khẩu; trên mạng chỉ có phần mã công cụ, không có dữ liệu KH.</p>
+  <p><b>Cài lần đầu</b> (cần có mạng):</p><ul>
+  <li><b>iPhone / iPad:</b> mở link bằng <b>Safari</b> › nút Chia sẻ (ô vuông có mũi tên) › <b>Thêm vào MH chính</b> › Thêm.</li>
+  <li><b>Android:</b> mở link bằng <b>Chrome</b> › menu ⋮ › <b>Cài đặt ứng dụng</b> (hoặc Thêm vào màn hình chính).</li></ul>
+  <p><b>Cập nhật dữ liệu cho app</b> (làm mỗi khi muốn điện thoại có số mới, ví dụ sau khi nhập R44 hoặc RP0003-KH):</p><ol>
+  <li>Trên máy tính, bản chính: <b>Cài đặt › Tải bản sao lưu</b>.</li>
+  <li>Gửi file <span class="mono">sao-luu-so-khach-hang-….json</span> sang điện thoại (iCloud Drive, Google Drive hoặc Zalo "Cloud của tôi").</li>
+  <li>Mở app trên điện thoại › <b>Cài đặt › Khôi phục từ bản sao lưu…</b> (lần đầu: nút ở màn hình mở khóa) › chọn file › nhập mật khẩu.</li></ol>
+  <ul><li>App trên điện thoại <b>chủ yếu để tra cứu</b>. Sửa trên điện thoại không tự về bản chính; nếu lỡ sửa, tải sao lưu từ app rồi khôi phục vào bản chính, và chỉ sửa ở một nơi.</li>
+  <li>Phiên bản công cụ mới được cập nhật lên link này; app tự nhận bản mới ở lần mở kế tiếp có mạng (mở app, đóng hẳn, mở lại).</li>
+  <li>Xóa file sao lưu trong Zalo / Drive sau khi đã khôi phục xong để gọn và an toàn hơn.</li>
+  <li>Mất điện thoại: dữ liệu vẫn mã hóa; nên đổi mật khẩu ở bản chính.</li></ul>`},
  {id:'su-co',t:'Mẹo và xử lý sự cố',lv:'nc',v:'',b:`<ul>
   <li><b>Lỗi lưu</b> (góc phải trên báo đỏ): kiểm tra mạng, thao tác lại; công cụ tự thử lại vài lần.</li>
   <li><b>Không đọc được dữ liệu</b> khi mở: kiểm tra mạng rồi bấm <b>Thử lại</b>.</li>
