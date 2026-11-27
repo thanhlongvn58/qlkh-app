@@ -1051,7 +1051,74 @@ https://github.com/nodeca/pako/blob/main/LICENSE
  * @license MIT
  * @copyright Louis-Dominique Dubeau
  */function n(e){return e>=65&&e<=90||95===e||e>=97&&e<=122||e>=192&&e<=214||e>=216&&e<=246||e>=248&&e<=767||e>=880&&e<=893||e>=895&&e<=8191||e>=8204&&e<=8205||e>=8304&&e<=8591||e>=11264&&e<=12271||e>=12289&&e<=55295||e>=63744&&e<=64975||e>=65008&&e<=65533||e>=65536&&e<=983039}Object.defineProperty(r,"__esModule",{value:!0}),r.NC_NAME_START_CHAR="A-Z_a-z\xc0-\xd6\xd8-\xf6\xf8-\u02ff\u0370-\u037d\u037f-\u1fff\u200c-\u200d\u2070-\u218f\u2c00-\u2fef\u3001-\ud7ff\uf900-\ufdcf\ufdf0-\ufffd\ud800\udc00-\udb7f\udfff",r.NC_NAME_CHAR="-"+r.NC_NAME_START_CHAR+".0-9\xb7\u0300-\u036f\u203f-\u2040",r.NC_NAME_START_CHAR_RE=new RegExp("^["+r.NC_NAME_START_CHAR+"]$","u"),r.NC_NAME_CHAR_RE=new RegExp("^["+r.NC_NAME_CHAR+"]$","u"),r.NC_NAME_RE=new RegExp("^["+r.NC_NAME_START_CHAR+"]["+r.NC_NAME_CHAR+"]*$","u"),r.isNCNameStartChar=n,r.isNCNameChar=function(e){return n(e)||45===e||46===e||e>=48&&e<=57||183===e||e>=768&&e<=879||e>=8255&&e<=8256}},{}]},{},[15])(15)}));
-//# sourceMappingURL=exceljs.min.js.map</script></head><body><div id="app"><div class="gate wrap"><div class="gate-card"><div class="brand">Công cụ Quản lý KH &amp; CN</div><p class="muted">Đang mở bản offline…</p></div></div></div><div id="layer"></div><div id="toast" class="toast" hidden></div><script>
+//# sourceMappingURL=exceljs.min.js.map</script><style id="v55-tablet">
+/* v55: bố cục máy tính bảng (iPad mini 8.3", iPad 10–11" dọc, 641–1100px) */
+.tabs.ovl{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 28px);mask-image:linear-gradient(90deg,transparent 0,#000 28px)}
+.tabs.ovr{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent)}
+.tabs.ovl.ovr{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 28px,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(90deg,transparent 0,#000 28px,#000 calc(100% - 36px),transparent)}
+@media (min-width:641px) and (max-width:1100px){
+ .top-in{gap:8px 8px;padding-top:8px;padding-bottom:4px}
+ .top .brand{flex:1 1 auto;min-width:0}
+ .rt{margin-left:auto;padding:4px 8px;font-size:12px}
+ .rt-d{padding:2px 8px}
+ .save{font-size:11.5px}
+ .top .btn.sm{padding:5px 10px;min-height:32px}
+ .tabs{order:3;flex:1 1 100%;gap:2px;margin:0 -4px;padding:0 4px}
+ .tab{padding:8px 11px;font-size:14px;gap:6px}
+ .tab .n{font-size:11.5px;margin-left:2px;padding:0 6px}
+ .tab svg{width:15px;height:15px}
+ #main.wrap{padding-top:14px}
+ .page-h{padding:14px 16px}
+ .side>summary{min-height:36px}
+ /* thanh công cụ: ô tìm kiếm một hàng, các nút chia đều bên dưới */
+ .cust-layout .toolbar{display:flex;flex-wrap:wrap;gap:8px}
+ .cust-layout .toolbar input[type=search]{flex:1 1 100%;min-width:0;max-width:none}
+ .cust-layout .toolbar>.btn,.cust-layout .toolbar>button{flex:1 1 0;justify-content:center;white-space:nowrap;min-height:40px}
+ .cust-layout .tgl{display:flex;width:100%;box-sizing:border-box;padding:10px 14px;font-size:14px;line-height:1.35}
+ .pager{gap:8px 10px}
+ .pager .row{flex-wrap:wrap;gap:6px}
+}
+@media (min-width:641px) and (max-width:1279px){
+ /* bảng KH dạng thẻ gọn: không còn cột bị cắt bên phải */
+ .tbl-cust-wrap,.tbl-wrap:has(>.tbl-cust){overflow:visible;border:1px solid var(--line);border-radius:14px;background:var(--surface);box-shadow:var(--shadow)}
+ .tbl-cust{display:block;width:100%;min-width:0!important}
+ .tbl-cust thead{display:block;border-bottom:1px solid var(--line)}
+ .tbl-cust thead tr{display:flex;align-items:center;gap:10px;padding:9px 14px}
+ .tbl-cust thead th{display:none;padding:0!important;border:none!important;background:none!important;min-width:0!important}
+ .tbl-cust thead th:first-child{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12.5px;font-weight:600;text-transform:none;letter-spacing:0}
+ .tbl-cust thead th:first-child::after{content:"Chọn cả trang"}
+ .tbl-cust tbody{display:block}
+ .tbl-cust tbody tr{display:grid;grid-template-columns:22px 30px auto minmax(0,1fr) auto;column-gap:12px;row-gap:3px;align-items:start;padding:11px 14px;border-bottom:1px solid var(--line);cursor:pointer}
+ .tbl-cust tbody tr:last-child{border-bottom:none}
+ .tbl-cust tbody td{display:block;border:none!important;padding:0!important;min-width:0!important;max-width:none!important;white-space:normal;background:transparent!important;box-shadow:none!important;font-size:13.5px;line-height:1.4}
+ .tbl-cust tbody td:first-child{grid-column:1;grid-row:1/span 2;padding-top:2px!important}
+ .tbl-cust tbody td.stt{grid-column:2;grid-row:1;color:var(--muted);font-size:12.5px;text-align:left;width:auto!important;padding-top:2px!important}
+ .tbl-cust tbody td.c-name{grid-column:3/5;grid-row:1;font-size:15px;font-weight:600;white-space:normal!important;min-width:0!important;text-wrap:balance}
+ .tbl-cust tbody td.c-sl{grid-column:5;grid-row:1;text-align:right;white-space:nowrap}
+ .tbl-cust tbody td.c-sl .sub{display:inline;margin:0 0 0 6px;font-size:12.5px}
+ .tbl-cust tbody td.c-sl .chip{font-size:11px;padding:0 6px;margin-left:4px}
+ .tbl-cust tbody td.c-tk{grid-column:3;grid-row:2;font-size:13px;color:var(--ink-2,var(--muted));font-weight:500}
+ .tbl-cust tbody td.c-ct{grid-column:4;grid-row:2;font-size:12.5px!important;color:var(--muted);overflow:hidden}
+ .tbl-cust tbody td.c-ct>div{display:inline;white-space:nowrap}
+ .tbl-cust tbody td.c-ct>div+div::before{content:" · ";color:var(--muted)}
+ .tbl-cust tbody td.c-ngt{grid-column:3/6;grid-row:3;font-size:12.5px}
+ .tbl-cust tbody td.c-ngt:empty{display:none}
+ .tbl-cust tbody td.c-ngt:not(:empty)::before{content:"Người giới thiệu: ";color:var(--muted)}
+ .tbl-cust tbody td.c-ngt>div{display:inline;margin-left:6px}
+ .tbl-cust tbody td.c-date{grid-column:5;grid-row:2;text-align:right;font-size:12.5px;color:var(--muted)}
+ .tbl-cust tbody td.c-date .sub{font-size:11.5px}
+ .tbl-cust tbody td.c-tags{grid-column:3/6;grid-row:4}
+ .tbl-cust tbody td.c-tags:has(.tags:empty){display:none}
+ .tbl-cust tbody td.c-tags .tags{margin-top:4px}
+ .tbl-cust tbody td.c-tags .chip{font-size:11.5px;padding:1px 8px}
+ .tbl-cust tbody tr:hover{background:var(--sunk)}
+ .tbl-cust tbody tr.big{background:#fff7e6;box-shadow:inset 4px 0 0 #e8902a}
+ .tbl-cust tbody tr.big:hover{background:#ffefcf}
+ :root[data-theme="dark"] .tbl-cust tbody tr.big{background:#3a2a12}
+}
+@media (min-width:641px) and (max-width:1279px) and (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tbl-cust tbody tr.big{background:#3a2a12}}
+</style>
+</head><body><div id="app"><div class="gate wrap"><div class="gate-card"><div class="brand">Công cụ Quản lý KH &amp; CN</div><p class="muted">Đang mở bản offline…</p></div></div></div><div id="layer"></div><div id="toast" class="toast" hidden></div><script>
 /* Layout lock: no pinch / ctrl-wheel zoom, no bounce; eye toggle on every password field */
 (function(){try{let v=document.querySelector('meta[name=viewport]');if(!v){v=document.createElement('meta');v.name='viewport';document.head.appendChild(v)}v.content='width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover'}catch(e){}
   ['gesturestart','gesturechange'].forEach(t=>document.addEventListener(t,e=>e.preventDefault(),{passive:false}));
@@ -1121,7 +1188,7 @@ const S={db:null,dl:null,meta:null,dek:null,dekRaw:null,
   f:{q:'',seller:'',cn:'',nguon:'',tt:'',nhan:'',arch:false,nav:'all',nsgSub:''},page:0,sel:new Set(),
   lf:{q:'',kq:'',kenh:'',arch:false},lpage:0,nf:{q:'',own:'LONG'},imp:null,revealed:new Set(),lastActive:Date.now(),warn:[]};
 
-const APP_VER='v54';if(!window.__QLKH_CLOUD&&!window.__QLKH_OFF){const _mv=()=>{if(document.getElementById('movedbar'))return;const d=document.createElement('div');d.id='movedbar';d.style.cssText='position:fixed;left:50%;transform:translateX(-50%);bottom:12px;z-index:9998;background:#fde8e8;color:#9b1c1c;border:1px solid #e3a0a0;border-radius:999px;padding:6px 14px;font:700 12.5px/1.4 inherit;max-width:calc(100% - 24px);text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.08)';d.innerHTML='BẢN DỰ PHÒNG (không đồng bộ) · Bản chính: <a href="https://qlkh-app.pages.dev" target="_blank" rel="noopener" style="color:inherit">qlkh-app.pages.dev</a> · Chỉ sửa ở bản chính';document.body.appendChild(d)};document.body?_mv():addEventListener('DOMContentLoaded',_mv)}
+const APP_VER='v55';if(!window.__QLKH_CLOUD&&!window.__QLKH_OFF){const _mv=()=>{if(document.getElementById('movedbar'))return;const d=document.createElement('div');d.id='movedbar';d.style.cssText='position:fixed;left:50%;transform:translateX(-50%);bottom:12px;z-index:9998;background:#fde8e8;color:#9b1c1c;border:1px solid #e3a0a0;border-radius:999px;padding:6px 14px;font:700 12.5px/1.4 inherit;max-width:calc(100% - 24px);text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.08)';d.innerHTML='BẢN DỰ PHÒNG (không đồng bộ) · Bản chính: <a href="https://qlkh-app.pages.dev" target="_blank" rel="noopener" style="color:inherit">qlkh-app.pages.dev</a> · Chỉ sửa ở bản chính';document.body.appendChild(d)};document.body?_mv():addEventListener('DOMContentLoaded',_mv)}
 /* ============ platform ============ */
 async function cap(name){for(let i=0;i<100&&!(window.claude&&window.claude.use);i++)await sleep(100);if(!(window.claude&&window.claude.use))return null;try{return await window.claude.use(name)}catch(e){return null}}
 let wq=Promise.resolve(),pending=0,saveErr=null;
@@ -1398,7 +1465,8 @@ function discHTML(where){return `<details class="dz dz-${where}"><summary><span 
 const DISC='Công cụ Quản lý KH &amp; CN là công cụ hỗ trợ cá nhân, dùng nội bộ để quản lý, theo dõi danh sách khách hàng và số liệu kinh doanh trong phạm vi công việc được giao. Công cụ không phải hệ thống chính thức của công ty hay ngân hàng đối tác, không dùng cho mục đích thương mại, quảng cáo hoặc chia sẻ cho bên thứ ba. Số liệu chỉ mang tính tham khảo; khi có khác biệt, số liệu chính thức (SR50/VSD, hệ thống lõi, thông báo của công ty) là căn cứ cuối cùng. Dữ liệu khách hàng được mã hóa, chỉ người có quyền truy cập mới xem được, và được xử lý theo quy định pháp luật hiện hành về bảo vệ dữ liệu cá nhân cùng quy định nội bộ. Người sử dụng chịu trách nhiệm bảo mật mật khẩu, mã khôi phục và sử dụng thông tin đúng mục đích.';
 /* v40: chuyển tab mượt (thanh chọn dạng giọt nước) và vuốt trái/phải để chuyển tab */
 const TAB_ORDER=['cust','lead','ngt','sales','import','report','log','settings'];
-function tabFx(smooth){const nav=document.querySelector('.tabs');if(!nav)return;let ind=nav.querySelector('.tab-ind');if(!ind){ind=document.createElement('span');ind.className='tab-ind';ind.setAttribute('aria-hidden','true');nav.prepend(ind);nav.addEventListener('scroll',()=>{S._navSL=nav.scrollLeft},{passive:true})}
+function tabOv(nav){if(!nav)return;const l=nav.scrollLeft,m=nav.scrollWidth-nav.clientWidth;nav.classList.toggle('ovl',l>4);nav.classList.toggle('ovr',l<m-4)}
+function tabFx(smooth){const nav=document.querySelector('.tabs');if(!nav)return;let ind=nav.querySelector('.tab-ind');if(!ind){ind=document.createElement('span');ind.className='tab-ind';ind.setAttribute('aria-hidden','true');nav.prepend(ind);nav.addEventListener('scroll',()=>{S._navSL=nav.scrollLeft;tabOv(nav)},{passive:true});if(!window._tabOvR){window._tabOvR=1;addEventListener('resize',()=>tabOv(document.querySelector('.tabs')),{passive:true})}}setTimeout(()=>tabOv(nav),400);tabOv(nav);
   const cur=nav.querySelector('.tab[aria-current="true"]');if(!cur){ind.style.opacity='0';return}ind.style.opacity='1';const to={x:cur.offsetLeft,w:cur.offsetWidth,h:cur.offsetHeight,y:cur.offsetTop};const from=S._ind;
   if(!smooth||!from){ind.style.transition='none';ind.style.transform=`translate3d(${to.x}px,${to.y}px,0)`;ind.style.width=to.w+'px';ind.style.height=to.h+'px';void ind.offsetWidth;ind.style.transition=''}
   else{ind.style.transform=`translate3d(${to.x}px,${to.y}px,0)`;ind.style.width=to.w+'px';ind.style.height=to.h+'px'}S._ind=to;
